@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 头信息 -->
-<!DOCTYPE configuration 
-PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
-
-<configuration>
-	<!-- mybatis的环境配置 一个环境里面可以配置多个数据库实例 -->
-	<environments default="default">
-		<!-- 属性配置 -->
-		<environment id="default">
-			<!-- 事务管理 -->
-			<transactionManager type="jdbc">
-
-			</transactionManager>
-			<!-- 数据库连接池 -->
-			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver"/>
-				<property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8"/>
-				<property name="username" value="root"/>
-				<property name="password" value="root"/>
-			</dataSource>
-		</environment>
-	</environments>
-</configuration>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- namespace：命名空间，用于隔离sql-->
+<mapper namespace="com.dsir.Mybatis.domain.UserMapper">
+    <!-- 
+       keyClumn:主键对应的列
+       keyProperty:主键对应的属性
+       useGeneratedKeys:数据自动生成的主键id保存到oid属性当中
+       
+     -->
+    <insert id="add" keyColumn="" keyProperty="" useGeneratedKeys="true" parameterType="com.dsir.Mybatis.domain.User">
+          insert into user(name,email,age,bornDate) values (#{name},#{email},#{age},#{bornDate});
+    </insert>
+</mapper>

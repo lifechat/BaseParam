@@ -6,7 +6,7 @@ package com.gechuang.mybatis.domain;
      * @return 成功返回true，失败返回false
      *  @throws SQLException
     * */
-import java.sql.Date;
+import java.util.Date;
 /**  
 *    
 * 项目名称：com.gechuang.java   
