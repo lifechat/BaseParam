@@ -60,8 +60,8 @@ public class HelloTest {
 		SqlSession session = myBatisUtil.openSession();
 		   
 		User user = new User();
-		user.setId(2L);
-		user.setName("update");
+		user.setId(5L);
+		user.setName("mybatis测试");
 		user.setEmail("2596642641@qq.com");
 		user.setAge(18);
 		user.setBornDate(new Date());

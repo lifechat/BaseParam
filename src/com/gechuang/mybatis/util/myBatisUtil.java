@@ -33,6 +33,6 @@ public class myBatisUtil {
       }
       
       public static SqlSession openSession(){
-    	  return myBatisUtil.openSession();
+    	  return instance.factory.openSession();
       }
 }
