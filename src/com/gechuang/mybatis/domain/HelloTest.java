@@ -7,6 +7,7 @@
 package com.gechuang.mybatis.domain;
 
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.apache.ibatis.io.Resources;
@@ -14,6 +15,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+
+import com.gechuang.mybatis.util.myBatisUtil;
 
 /**  
 *    
@@ -33,16 +36,41 @@ public class HelloTest {
 	   user.setEmail("email");
 	   user.setBornDate(new Date());
 	   
+	   SqlSession session = null;
 	   try {
 		   //启动框架里面的方法，调用配置文件
-		   SqlSessionFactory sf = new SqlSessionFactoryBuilder()
-				   .build(Resources.getResourceAsStream("mybatis-config.xml"));
+		   session = myBatisUtil.openSession();
 		   //通过工厂模式factory得到SqlSession,打开数据库的session会话机制
-		   SqlSession session = sf.openSession();
-		   //找到对应的sql，保存对应的对象
-		   session.insert("com.dsir.Mybatis.domain.UserMapper", 1);
+		   session.insert("mybatis.domain.UserMapper.add", user);
+		   //提交事务
+		   session.commit();
+		   //关闭资源
+		   session.close();
 	} catch (Exception e) {
-		// TODO: handle exception
+		e.printStackTrace();
+	}finally {
+		if(session != null){
+			session.close();
+		}
+	}
+   }
+   @Test
+   public void testUpdate(){
+	   try {
+		SqlSession session = myBatisUtil.openSession();
+		   
+		User user = new User();
+		user.setId(2L);
+		user.setName("update");
+		user.setEmail("2596642641@qq.com");
+		user.setAge(18);
+		user.setBornDate(new Date());
+		
+		session.update("mybatis.domain.UserMapper.update",user);
+		session.commit();
+		session.close();
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
    }
 }
