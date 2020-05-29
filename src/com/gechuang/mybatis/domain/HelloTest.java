@@ -48,6 +48,9 @@ public class HelloTest {
 		   session.close();
 	} catch (Exception e) {
 		e.printStackTrace();
+		if(session != null){
+			session.rollback();
+		}
 	}finally {
 		if(session != null){
 			session.close();
