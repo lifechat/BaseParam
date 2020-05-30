@@ -9,6 +9,7 @@ package com.gechuang.mybatis.domain;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -73,6 +74,41 @@ public class HelloTest {
 		session.commit();
 		session.close();
 	} catch (Exception e) {
+		e.printStackTrace();
+	}
+   }
+   
+   @Test
+   public void testGet(){
+	   try {
+		SqlSession session = myBatisUtil.openSession();
+		User user = session.selectOne("mybatis.domain.UserMapper.get",2L);
+		System.out.println(user);
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+   }
+   @Test
+   public void testDel(){
+	   try {
+		  SqlSession session = myBatisUtil.openSession();
+		  session.delete("mybatis.domain.UserMapper.delete", 1L);
+		  session.commit();
+		  session.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+   }
+   @Test 
+   public void testList(){
+	   try {
+		SqlSession session = myBatisUtil.openSession();
+		List<User> us =  session.selectList("mybatis.domain.UserMapper.list");
+		System.out.println(us);
+	} catch (Exception e) {
+		// TODO: handle exception
 		e.printStackTrace();
 	}
    }

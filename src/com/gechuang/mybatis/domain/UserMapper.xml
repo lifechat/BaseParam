@@ -10,10 +10,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        keyProperty:主键对应的属性
        useGeneratedKeys:数据自动生成的主键id保存到oid属性当中
      -->
-    <insert id="add" keyColumn="" keyProperty="" useGeneratedKeys="true" parameterType="com.gechuang.mybatis.domain.User">
+    <insert id="add" keyColumn="" keyProperty="" useGeneratedKeys="true" parameterType="user">
           insert into user(name,email,age,bornDate) values (#{name},#{email},#{age},#{bornDate})
     </insert>
-    <update id="update" parameterType="com.gechuang.mybatis.domain.User">
+    <update id="update" parameterType="user">
           update user set name = #{name},email=#{email},age=#{age},bornDate=#{bornDate} where id = #{id}
     </update>
+    <select id="get" parameterType="long" resultType="user">
+         select id,name,email,age,bornDate from user where id = #{id}
+    </select>
+    <delete id="delete" parameterType="long">
+          delete from user where id = #{id}
+    </delete>
+    
+    <select id="list" resultType="user">
+          select id,name,email,age,bornDate from user
+    </select>
 </mapper>

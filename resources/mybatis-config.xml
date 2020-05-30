@@ -5,6 +5,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<typeAliases>
+            <typeAlias type="com.gechuang.mybatis.domain.User" alias="user"/>
+    </typeAliases>
 	<!-- mybatis的环境配置 一个环境里面可以配置多个数据库实例 -->
 	<environments default="default">
 		<!-- 属性配置 -->
