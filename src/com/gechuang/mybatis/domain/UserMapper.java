@@ -23,7 +23,7 @@ public interface UserMapper {
    
    void update(User u);
    
-   void get(Long id);
+   User get(Long id);
    
    void delete(Long id);
    
