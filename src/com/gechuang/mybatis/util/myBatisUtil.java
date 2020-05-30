@@ -6,6 +6,8 @@
     * */
 package com.gechuang.mybatis.util;
 
+import java.util.Properties;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -26,7 +28,10 @@ public class myBatisUtil {
       
       private myBatisUtil(){
     	  try {
-			factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"));
+    		  //启动框架
+    		  Properties props = new Properties();
+    		  props.load(Resources.getResourceAsStream("db.properties"));
+			factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"),props);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
