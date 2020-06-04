@@ -2,30 +2,52 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
-<!-- namespace：命名空间，用于隔离sql-->
+
+<!-- namespace：命名空间，用于隔离sql -->
 <mapper namespace="com.gechuang.mybatis.domain.UserMapper">
-    <!-- 代表结果集合对象的映射关系 resultMapping -->
-    <resultMap type="" id=""></resultMap>
-    <!-- 
-       keyClumn:主键对应的列
-       keyProperty:主键对应的属性
-       useGeneratedKeys:数据自动生成的主键id保存到oid属性当中
-     -->
-    <insert id="add" keyColumn="" keyProperty="" useGeneratedKeys="true" parameterType="user">
-          insert into user(name,email,age,bornDate) values (#{name},#{email},#{age},#{bornDate})
-    </insert>
-    <update id="update" parameterType="user">
-          update user set name = #{name},email=#{email},age=#{age},bornDate=#{bornDate} where id = #{id}
-    </update>
-    <select id="get" parameterType="long" resultType="user">
-         select id,name,email,age,bornDate from user where id = #{id}
-    </select>
-    <delete id="delete" parameterType="long">
-          delete from user where id = #{id}
-    </delete>
-    
-    <select id="list" resultType="user">
-          select id,name,email,age,bornDate from user
-    </select>
+	<!-- 代表结果集合对象的映射关系 resultMapping -->
+	<resultMap type="User" id="user_mapping">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="age" property="age" />
+		<result column="bornDate" property="bornDate" />
+	</resultMap>
+	<!-- keyClumn:主键对应的列 keyProperty:主键对应的属性 useGeneratedKeys:数据自动生成的主键id保存到oid属性当中 -->
+	<insert id="add" keyColumn="" keyProperty="" useGeneratedKeys="true"
+		parameterType="user">
+		insert into user(name,email,age,bornDate) values
+		(#{name},#{email},#{age},#{bornDate})
+	</insert>
+	<update id="update" parameterType="user">
+		update user
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="email != null">
+				email=#{email},
+			</if>
+			<if test="age !=null">
+				age=#{age},
+			</if>
+			<if test="bornDate != null">
+				bornDate=#{bornDate},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<select id="get" parameterType="long" resultType="user">
+		select id,name,email,age,bornDate from user where id = #{id}
+	</select>
+	<delete id="delete" parameterType="long">
+		delete from user where id = #{id}
+	</delete>
+
+	<select id="list" resultType="user">
+		select id,name,email,age,bornDate from user
+		<trim prefix="" prefixOverrides="" suffix="" suffixOverrides="">
+		    
+		</trim>
+	</select>
 </mapper>
